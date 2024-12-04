@@ -443,7 +443,7 @@ trait ResourceController
         if ($data instanceof SerializableResource) {
             return new ResourceResponse($data, $context);
         } else {
-            return response()->json($this->resourceToArray($data));
+            return new JsonResponse($this->resourceToArray($data));
         }
     }
 

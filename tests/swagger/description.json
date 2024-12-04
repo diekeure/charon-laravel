@@ -135,7 +135,7 @@
             "type": "array",
             "in": "query",
             "required": false,
-            "description": "Define fields to return. Separate multiple values with comma. Values: *, pet-id, name, category, category.*, category.name, category.category-description, photos, photos.*, photos.url, tags, tags.*, tags.name, status",
+            "description": "Define fields to return. Separate multiple values with comma. Values: *, pet-id, name, category, category.*, category.category-id, category.name, category.category-description, photos, photos.*, photos.photo-id, photos.url, tags, tags.*, tags.tag-id, tags.name, status",
             "items": {
               "type": "string"
             },
@@ -145,13 +145,16 @@
               "name",
               "category",
               "category.*",
+              "category.category-id",
               "category.name",
               "category.category-description",
               "photos",
               "photos.*",
+              "photos.photo-id",
               "photos.url",
               "tags",
               "tags.*",
+              "tags.tag-id",
               "tags.name",
               "status"
             ]
@@ -219,7 +222,7 @@
             "type": "array",
             "in": "query",
             "required": false,
-            "description": "Define fields to return. Separate multiple values with comma. Values: *, pet-id, name, category, category.*, category.name, category.category-description, photos, photos.*, photos.url, tags, tags.*, tags.name, status",
+            "description": "Define fields to return. Separate multiple values with comma. Values: *, pet-id, name, category, category.*, category.category-id, category.name, category.category-description, photos, photos.*, photos.photo-id, photos.url, tags, tags.*, tags.tag-id, tags.name, status",
             "items": {
               "type": "string"
             },
@@ -229,13 +232,16 @@
               "name",
               "category",
               "category.*",
+              "category.category-id",
               "category.name",
               "category.category-description",
               "photos",
               "photos.*",
+              "photos.photo-id",
               "photos.url",
               "tags",
               "tags.*",
+              "tags.tag-id",
               "tags.name",
               "status"
             ]
@@ -309,7 +315,7 @@
             "type": "array",
             "in": "query",
             "required": false,
-            "description": "Define fields to return. Separate multiple values with comma. Values: *, pet-id, name, category, category.*, category.name, category.category-description, photos, photos.*, photos.url, tags, tags.*, tags.name, status",
+            "description": "Define fields to return. Separate multiple values with comma. Values: *, pet-id, name, category, category.*, category.category-id, category.name, category.category-description, photos, photos.*, photos.photo-id, photos.url, tags, tags.*, tags.tag-id, tags.name, status",
             "items": {
               "type": "string"
             },
@@ -319,13 +325,16 @@
               "name",
               "category",
               "category.*",
+              "category.category-id",
               "category.name",
               "category.category-description",
               "photos",
               "photos.*",
+              "photos.photo-id",
               "photos.url",
               "tags",
               "tags.*",
+              "tags.tag-id",
               "tags.name",
               "status"
             ]

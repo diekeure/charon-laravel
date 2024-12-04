@@ -9,6 +9,7 @@ use CatLab\Charon\Exceptions\InvalidPropertyException;
 use CatLab\Charon\Exceptions\VariableNotFoundInContext;
 use CatLab\Charon\Interfaces\Context;
 use CatLab\Charon\Interfaces\ResourceTransformer;
+use CatLab\Charon\Laravel\Exceptions\InvalidChildrenCollectionTypeException;
 use CatLab\Charon\Models\Identifier;
 use CatLab\Charon\Models\Properties\RelationshipField;
 use CatLab\Charon\Models\Values\PropertyValue;
@@ -97,7 +98,7 @@ class PropertyResolver extends \CatLab\Charon\Resolvers\PropertyResolver
                     $identifier->getValue()
                 );
                 return $entities->first();
-            } elseif ($entities instanceof Builder) {
+            } elseif ($entities instanceof \Illuminate\Contracts\Database\Eloquent\Builder) {
                 $entities = $entities->where(
                     $transformer->getQueryAdapter()->getQualifiedName($identifier->getField()),
                     '=',
@@ -110,6 +111,10 @@ class PropertyResolver extends \CatLab\Charon\Resolvers\PropertyResolver
                         return $entity;
                     }
                 }
+            } else {
+                throw new InvalidChildrenCollectionTypeException(
+                    'Unexpected child collection type when trying to resolve  ' . $field->getName() . ': ' . get_class($entities)
+                );
             }
         }
 
@@ -148,7 +153,7 @@ class PropertyResolver extends \CatLab\Charon\Resolvers\PropertyResolver
             // Handle the order
             $orderBys = $field->getOrderBy();
             foreach ($orderBys as $orderBy) {
-                $sortField = $field->getChildResource()->getFields()->getFromDisplayName($orderBy[0]);
+                $sortField = $field->getChildResourceDefinition()->getFields()->getFromDisplayName($orderBy[0]);
                 if ($sortField) {
                     $models->orderBy($transformer->getQualifiedName($sortField, $orderBy[1]));
                 }
